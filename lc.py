@@ -60,3 +60,26 @@ class Solution:
                     count += 1
             output.append(count)
         return output
+
+# i= 0 j= 0
+# nums[i]= 8 nums[j]= 8
+# i= 0 j= 1
+# nums[i]= 8 nums[j]= 1
+# i= 0 j= 2
+# nums[i]= 8 nums[j]= 2
+# i= 0 j= 3
+# nums[i]= 8 nums[j]= 2
+# i= 0 j= 4
+# nums[i]= 8 nums[j]= 3
+# i= 1 j= 0
+# nums[i]= 1 nums[j]= 8
+# i= 1 j= 1
+# nums[i]= 1 nums[j]= 1
+# i= 1 j= 2
+# nums[i]= 1 nums[j]= 2
+# i= 1 j= 3
+# nums[i]= 1 nums[j]= 2
+# i= 1 j= 4
+# nums[i]= 1 nums[j]= 3
+# i= 2 j= 0
+# nums[i]= 2 nums[j]= 8
