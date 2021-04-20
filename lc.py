@@ -113,3 +113,30 @@ class Solution:
             if val == target:
                 return i
         return -1
+
+#  next solution uses binary search and is more efficient
+#  start = start index
+#  end = end index
+#  mid = divide by 2 , use floor //
+
+# if target num is greater than mid, use mid as new start, and opposite until
+# you find your target
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        start = 0
+        end = len(nums)-1
+        
+        while start < end:
+            mid = (start + len(nums)) // 2
+            num = nums[mid]
+            print(start, mid, end)
+            if target == num:
+                return mid
+            elif target > mid:
+                start = mid
+            elif target < mid:
+                end = mid
+                
+        return -1
+
