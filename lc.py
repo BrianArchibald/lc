@@ -648,6 +648,9 @@ left 4
 
 33. Search in Rotated Sorted Array
 Medium
+
+!!!     Another Binary Search, we want to find the pivot point (or the smallest element, which would be the pivot), then figure out what side to use binary search on.
+
 There is an integer array nums sorted in ascending order (with distinct values).
 Prior to being passed to your function, nums is rotated at an unknown pivot index k (0 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
 Given the array nums after the rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
@@ -672,3 +675,63 @@ Constraints:
 All values of nums are unique.
 nums is guaranteed to be rotated at some pivot.
 -104 <= target <= 104
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
+        
+        while left < right:
+            midpoint = (left + right) // 2
+            
+            if nums[midpoint] > nums[right]:
+                left = midpoint + 1
+            else:
+                right = midpoint
+        
+        start = left
+        left = 0    
+        right = len(nums) - 1
+        
+        if target >= nums[start] and target <= nums[right]:
+            left = start
+        else:
+            right = start
+        
+        while left <= right:
+            midpoint = (left + right) // 2
+            
+            if nums[midpoint] == target:
+                return midpoint
+            elif nums[midpoint] > target:
+                right = midpoint - 1
+            else:
+                left = midpoint + 1
+                
+        return -1
+
+################################################################################################################
+
+15. 3Sum
+Medium
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+Notice that the solution set must not contain duplicate triplets.
+Example 1:
+
+Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Example 2:
+
+Input: nums = []
+Output: []
+Example 3:
+
+Input: nums = [0]
+Output: []
+ 
+Constraints:
+0 <= nums.length <= 3000
+-105 <= nums[i] <= 105
+
+
