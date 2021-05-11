@@ -772,3 +772,109 @@ class Solution:
                 else:
                     right -= 1
         return triplets
+
+##################################################################################################################
+11. Container With Most Water   #   TWo pointer prob
+Medium
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
+
+Notice that you may not slant the container.
+Example 1:
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+Example 2:
+
+Input: height = [1,1]
+Output: 1
+Example 3:
+
+Input: height = [4,3,2,1,4]
+Output: 16
+Example 4:
+
+Input: height = [1,2,1]
+Output: 2
+ 
+Constraints:
+n == height.length
+2 <= n <= 105
+0 <= height[i] <= 104
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        max_area = 0
+        left = 0
+        right = len(height) - 1
+        
+        while left < right:
+            if height[left] < height[right]:
+                max_area = max(max_area, height[left] * (right - left))
+                left += 1
+            else:
+                max_area = max(max_area, height[right] * (right - left))
+                right -= 1
+        return max_area
+
+###########################################################################################################################
+
+371. Sum of Two Integers
+Medium
+Given two integers a and b, return the sum of the two integers without using the operators + and -.
+
+Example 1:
+
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+
+Input: a = 2, b = 3
+Output: 5
+ 
+Constraints:
+-1000 <= a, b <= 1000
+
+
+class Solution:
+    def getSum(self, a: int, b: int) -> int:
+        
+        # 32 bit mask in hexadecimal
+        mask = 0xffffffff
+        
+        # works both as while loop and single value check 
+        while (b & mask) > 0:
+            
+            carry = ( a & b ) << 1
+            a = (a ^ b) 
+            b = carry
+        
+        # handles overflow
+        return (a & mask) if b > 0 else a
+
+######################################################################################################3
+
+70. Climbing Stairs
+Easy
+You are climbing a staircase. It takes n steps to reach the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Example 1:
+
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+Example 2:
+
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+ 
+Constraints:
+
+1 <= n <= 45
