@@ -854,7 +854,7 @@ class Solution:
 
 ######################################################################################################3
 
-70. Climbing Stairs
+70. Climbing Stairs   Fibonacci is answer --- 
 Easy
 You are climbing a staircase. It takes n steps to reach the top.
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -878,3 +878,57 @@ Explanation: There are three ways to climb to the top.
 Constraints:
 
 1 <= n <= 45
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        a, b = 1, 1
+        for i in range(n):
+            a, b = b, a + b
+        return a
+        
+#########################################################################################################
+
+3. Longest Substring Without Repeating Characters
+Medium
+Given a string s, find the length of the longest substring without repeating characters.
+
+ 
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+Example 4:
+
+Input: s = ""
+Output: 0
+
+Constraints:
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces.
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        dic, res, start, = {}, 0, 0
+        for i, ch in enumerate(s):
+            # when char already in dictionary
+            if ch in dic:
+                # check length from start of string to index
+                res = max(res, i-start)
+                # update start of string index to the next index
+                start = max(start, dic[ch]+1)
+            # add/update char to/of dictionary 
+            dic[ch] = i
+        # answer is either in the begining/middle OR some mid to the end of string
+        return max(res, len(s)-start)
