@@ -918,17 +918,34 @@ Constraints:
 0 <= s.length <= 5 * 104
 s consists of English letters, digits, symbols and spaces.
 
+
+"abcdtabr"
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         dic, res, start, = {}, 0, 0
         for i, ch in enumerate(s):
-            # when char already in dictionary
+            print('i', i, 'ch', ch)
             if ch in dic:
                 # check length from start of string to index
                 res = max(res, i-start)
+                print('res', res)
                 # update start of string index to the next index
                 start = max(start, dic[ch]+1)
+                print('start', start)
             # add/update char to/of dictionary 
             dic[ch] = i
         # answer is either in the begining/middle OR some mid to the end of string
         return max(res, len(s)-start)
+i 0 ch a
+i 1 ch b
+i 2 ch c
+i 3 ch d
+i 4 ch t
+i 5 ch a
+res 5
+start 1
+i 6 ch b
+res 5
+start 2
+i 7 ch r
