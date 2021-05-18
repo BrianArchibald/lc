@@ -974,3 +974,32 @@ Constraints:
 s consists of only uppercase English letters.
 0 <= k <= s.length
 
+condition: keep moving j while the num of replacement is < k (advance j while condition of k is still valid)
+    when num of replacment is > k, shrink window my moving i so that we can hav a valid condition again
+
+0 1 2 3
+A A B A
+j - i + 1 = 4
+max_count = 3
+j - i + 1 - max_count = the num of chars in the window that are not the char that occurred the most = num of replacements needed
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        i, j, max_count, max_len = 0, 0, 0, 0
+        window = [0 for _ in range(26)]
+        
+        while j < len(s):
+            index = ord(s[j]) - ord('A')
+            window[index] += 1
+            max_count = max(max_count, window[index])
+            
+            while j - i + 1 - max_count > k:
+                window[ord(s[i]) - ord('A')] -= 1
+                i += 1
+            max_len = max(max_len, j - i + 1)
+            j += 1
+            
+        return max_len
+
+##########################################################################################################################
+
