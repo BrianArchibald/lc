@@ -888,7 +888,7 @@ class Solution:
         
 #########################################################################################################
 
-3. Longest Substring Without Repeating Characters
+3. Longest Substring Without Repeating Characters     ###  Sliding window example 2
 Medium
 Given a string s, find the length of the longest substring without repeating characters.
 
@@ -950,6 +950,24 @@ res 5
 start 2
 i 7 ch r
 
+
+
+#  Now using the sliding window
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_len, i, j, curr_set, n = 0, 0, 0, set(), len(s)
+
+        while i < n and j < n:
+            if s[j] in curr_set:
+                curr_set.remove(s[j])
+                i += 1
+            else:
+                curr_set.add(s[j])
+                j += 1
+            max_len = max(max_len, j - i)
+        return max_len
+
+
 ############################################################################################################333
 
 424. Longest Repeating Character Replacement
@@ -999,7 +1017,40 @@ class Solution:
             max_len = max(max_len, j - i + 1)
             j += 1
             
-        return max_len
+        return max_len 
 
-##########################################################################################################################
+####################################################################################################################
 
+643. Maximum Average Subarray I   ##   Sliding Window    ## 
+Easy
+You are given an integer array nums consisting of n elements, and an integer k.
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+
+Example 1:
+
+Input: nums = [1,12,-5,-6,50,3], k = 4
+Output: 12.75000
+Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+Example 2:
+
+Input: nums = [5], k = 1
+Output: 5.00000o
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        '''
+        [1,12,-5,-6,50,3]
+         ^
+         i 
+           ^
+           j      
+        
+        '''
+        maxSum = windowSum = sum(nums[:k])
+        for i in range(k, len(nums)):
+            windowSum += nums[i] - nums[i - k]
+            maxSum = max(maxSum, windowSum)
+        return maxSum / k
+        
+            
+        
