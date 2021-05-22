@@ -1086,3 +1086,14 @@ Constraints:
 1 <= nums.length <= 100
 1 <= nums[i] <= 100
         
+class Solution:
+    def maxAscendingSum(self, nums: List[int]) -> int:
+        windowSum = maxSum = nums[0]
+        
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i - 1]:
+                windowSum += nums[i] 
+                maxSum = max(maxSum, windowSum)
+            else:
+                windowSum = nums[i]
+        return maxSum
