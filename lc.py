@@ -1133,3 +1133,77 @@ Output: 66
 Constraints:
 1 <= arr.length <= 100
 1 <= arr[i] <= 1000
+
+#####################################################################################################################
+
+242. Valid Anagram
+Easy
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+ 
+Constraints:
+1 <= s.length, t.length <= 5 * 104
+s and t consist of lowercase English letters.
+ 
+Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+              
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dict1 = {}
+        dict2 = {}
+        for item in s:
+            dict1[item] = dict1.get(item, 0) + 1
+        for item in t:
+            dict2[item] = dict2.get(item, 0) + 1
+        if dict1 == dict2:
+            return True
+        else:
+            return False
+
+##################################################################################################################
+
+76. Minimum Window Substring
+Hard
+Given two strings s and t of lengths m and n respectively, return the minimum window in s which will contain all the characters in t. If there is no such window in s that covers all characters in t, return the empty string "".
+Note that If there is such a window, it is guaranteed that there will always be only one unique minimum window in s.
+
+Example 1:
+
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Example 2:
+
+Input: s = "a", t = "a"
+Output: "a"
+ 
+Constraints:
+
+m == s.length
+n == t.length
+1 <= m, n <= 105
+s and t consist of English letters.
+
+def minWindow(self, s, t):
+    need, missing = collections.Counter(t), len(t)
+    i = I = J = 0
+    for j, c in enumerate(s, 1):
+        missing -= need[c] > 0
+        need[c] -= 1
+        if not missing:
+            while i < j and need[s[i]] < 0:
+                need[s[i]] += 1
+                i += 1
+            if not J or j - i <= J - I:
+                I, J = i, j
+    return s[I:J]
