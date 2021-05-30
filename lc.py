@@ -1207,3 +1207,89 @@ def minWindow(self, s, t):
             if not J or j - i <= J - I:
                 I, J = i, j
     return s[I:J]
+
+    ###########################################################################################3
+
+49. Group Anagrams
+Medium
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+Example 2:
+
+Input: strs = [""]
+Output: [[""]]
+Example 3:
+
+Input: strs = ["a"]
+Output: [["a"]]
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        groups = collections.defaultdict(list)
+        for string in strs:
+            print(groups)
+            groups["".join(sorted(string))].append(string)
+        return groups.values()
+
+using a dict of all letters in alphabet, groups needs to be a tuple for a key, cant assign list to a key
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        groups = collections.defaultdict(list)
+        for string in strs:
+            count = [0] * 26
+            for c in string:
+                count[ord(c) - ord('a')] += 1
+            groups[tuple(count)].append(string)
+        return groups.values()
+
+##############################################################################################################
+
+20. Valid Parentheses
+Easy
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+
+Example 1:
+
+Input: s = "()"
+Output: true
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+Example 3:
+
+Input: s = "(]"
+Output: false
+Example 4:
+
+Input: s = "([)]"
+Output: false
+Example 5:
+
+Input: s = "{[]}"
+Output: true
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        lookup = {'}':'{', ')':'(', ']':'['}
+        
+        for item in s:
+            if item in lookup.values():
+                stack.append(item)
+            elif stack and lookup[item] == stack[-1]:
+                stack.pop()
+            else:
+                return False
+        
+        return stack == []
+               
