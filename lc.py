@@ -1293,3 +1293,36 @@ class Solution:
         
         return stack == []
                
+#####################################################################################################################
+
+125. Valid Palindrome
+Easy
+Given a string s, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+ 
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+            
+        l, r = 0, len(s) - 1
+        while l < r:
+            if not s[l].isalnum():
+                l += 1
+            elif not s[r].isalnum():
+                r -= 1
+            else:
+                if s[l].lower() != s[r].lower():
+                    return False
+                else:
+                    l += 1
+                    r -= 1
+        return True
