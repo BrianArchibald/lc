@@ -1326,3 +1326,89 @@ class Solution:
                     l += 1
                     r -= 1
         return True
+
+######################################################################################################
+5. Longest Palindromic Substring
+Medium
+
+11121
+
+710
+
+Add to List
+
+Share
+Given a string s, return the longest palindromic substring in s.
+
+ 
+
+Example 1:
+
+Input: s = "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+Example 2:
+
+Input: s = "cbbd"
+Output: "bb"
+Example 3:
+
+Input: s = "a"
+Output: "a"
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        p = ''
+        for i in range(len(s)):
+            p1 = self.get_palindrome(s, i, i+1)
+            p2 = self.get_palindrome(s, i, i)
+            p = max([p, p1, p2], key=lambda x: len(x))
+        return p
+    
+    def get_palindrome(self, s: str, l: int, r: int) -> str:
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1:r]
+
+####################################################################################################################
+
+647. Palindromic Substrings
+Medium
+
+4423
+
+138
+
+Add to List
+
+Share
+Given a string s, return the number of palindromic substrings in it.
+
+A string is a palindrome when it reads the same backward as forward.
+
+A substring is a contiguous sequence of characters within the string.
+
+ 
+
+Example 1:
+
+Input: s = "abc"
+Output: 3
+Explanation: Three palindromic strings: "a", "b", "c".
+Example 2:
+
+Input: s = "aaa"
+Output: 6
+Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+ 
+
+Constraints:
+
+1 <= s.length <= 1000
+s consists of lowercase English letters.
+Accepted
+290,520
+Submissions
+461,889
+
