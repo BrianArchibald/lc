@@ -1475,7 +1475,7 @@ class Solution:
         return c['1']
 
 #######################################################################################################################
-338. Counting Bits
+338. Counting Bits  ## this was is crazy hard for an easy!!!!!
 Easy
 
 4117
@@ -1519,4 +1519,17 @@ Follow up:
 
 It is very easy to come up with a solution with a runtime of O(n log n). Can you do it in linear time O(n) and possibly in a single pass?
 Can you do it without using any built-in function (i.e., like __builtin_popcount in C++)?
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        output = [0]
+        
+        while (len(output) <= n):
+            output.extend([i+1 for i in output])
+            
+        return output[:n+1]
+
+# brute force
+def countBits(self, num: int) -> List[int]:
+    return [bin(i).count('1') for i in range(num+1)]
 
