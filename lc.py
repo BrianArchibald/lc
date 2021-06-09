@@ -1568,3 +1568,10 @@ n == nums.length
 0 <= nums[i] <= n
 All the numbers of nums are unique.
 
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        for i in range(len(nums)):
+            if i != nums[i]:
+                return i
+        return len(nums)
