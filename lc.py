@@ -1950,7 +1950,27 @@ Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is di
 Constraints:
 
 1 <= s.length <= 100
+
 s contains only digits and may contain leading zero(s).
+
+
+Problem Reduction: variation of n-th staircase with n = [1, 2] steps.
+
+Approach: We generate a bottom up DP table.
+
+The tricky part is handling the corner cases (e.g. s = "30").
+
+Most elegant way to deal with those error/corner cases, is to allocate an extra space, dp[0].
+
+Let dp[ i ] = the number of ways to parse the string s[1: i + 1]
+
+For example:
+s = "231"
+index 0: extra base offset. dp[0] = 1
+index 1: # of ways to parse "2" => dp[1] = 1
+index 2: # of ways to parse "23" => "2" and "23", dp[2] = 2
+index 3: # of ways to parse "231" => "2 3 1" and "23 1" => dp[3] = 2
+
 
     def numDecodings(self, s: str) -> int:
         if not s or s[0]=='0':
@@ -1970,3 +1990,59 @@ s contains only digits and may contain leading zero(s).
                 dp[i] += dp[i - 2]
                 
         return dp[-1]
+
+i######################################################################################################
+
+# DP
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+How many possible unique paths are there?
+
+
+Example 1:
+
+
+Input: m = 3, n = 7
+Output: 28
+Example 2:
+
+Input: m = 3, n = 2
+Output: 3
+Explanation:
+From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+1. Right -> Down -> Down
+2. Down -> Down -> Right
+3. Down -> Right -> Down
+Example 3:
+
+Input: m = 7, n = 3
+Output: 28
+Example 4:
+
+Input: m = 3, n = 3
+Output: 6
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        '''
+          0 1 2 3
+        0 1 1 1 1
+        1 1 2 3 4
+        2 1 3 6 10
+        
+        just adding top and left to get item
+
+        '''
+        dp = [[0 for col in range(m)] for row in range(n)]
+        
+        for i in range(m): dp[0][i] = 1
+        for i in range(n): dp[i][0] = 1
+            
+        for row in range(1,n):
+            for col in range(1,m):
+                dp[row][col] = dp[row-1][col] + dp[row][col-1]
+                
+        return dp[n-1][m-1]
+
+i###########################################################################################################################
+
