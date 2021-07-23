@@ -2081,3 +2081,51 @@ class Solution:
             
         return max_jump >= N
 
+###################################################################################################
+206. Reverse Linked List
+Easy
+
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+
+class Solution:
+# @param {ListNode} head
+# @return {ListNode}
+def reverseList(self, head):
+    prev = None
+    while head:
+        curr = head
+        head = head.next
+        curr.next = prev
+        prev = curr
+    return prev
+
+
+1 -> 2 -> 3 -> 4
+
+# what we need
+null <- 1 <- 2 <- 3 <- 4
+prev  curr  nxt
+
+prev = null
+curr = 1
+nxt = 2
+1.next = null  # this is what I want me answer to be
+
+prev = null, curr = head, nxt = head.next
+
+# next iteration
+prev = curr
+curr = nxt
+
+prev = 1
+cur = 2
+nxt = 3
+2.next = 1
+
+nxt = curr.next
+curr.next = prev
+prev = curr
+curr = nxt
+
