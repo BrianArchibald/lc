@@ -2129,3 +2129,35 @@ curr.next = prev
 prev = curr
 curr = nxt
 
+####   recursive solution  ####
+
+base case:
+    if not head or not head.ext:
+        return head
+
+recurse:
+    1 -> 2 -> 3 -> 4
+    reverseList(head.next)
+
+operation:
+    3 -> 4 => 3 <- 4
+
+    4.next = 3
+    3.next = null
+
+    null <- 3 <- 4
+
+    3 <- head
+    4 <- head.next
+
+    head.next.next = head
+    head.next = null
+
+
+def reverseList(self, head):
+    if not head or not head.next:
+        return head
+    rev_head = reverseList(head.next)
+    head.next.next = head
+    head.next = null
+    return rev_head
