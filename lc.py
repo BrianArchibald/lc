@@ -2159,5 +2159,5 @@ def reverseList(self, head):
         return head
     rev_head = reverseList(head.next)
     head.next.next = head
-    head.next = null
+    head.next = None
     return rev_head
