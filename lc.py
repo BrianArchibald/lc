@@ -2153,6 +2153,17 @@ operation:
     head.next.next = head
     head.next = null
 
+#  3 lines iterative
+def reverseList(self, head):
+    """
+    :type head: ListNode
+    :rtype: ListNode
+    """
+    cur, prev = head, None
+    while cur:
+        cur.next, prev, cur = prev, cur, cur.next
+    return prev
+
 
 def reverseList(self, head):
     if not head or not head.next:
