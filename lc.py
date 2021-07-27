@@ -2203,3 +2203,23 @@ Example 5:
 Input: intervals = [[1,5]], newInterval = [2,7]
 Output: [[1,7]]
 
+###############################################################################################################
+
+49 . Group Anagrams # diff way
+
+def groupAnagrams(self, strs):
+    # use defaultdict so dont have to do if key is inside stuff, we are going to have a key with a list as value
+    mapping = collections.defaultdict(list)
+
+    for s in strs:
+        # convert each word into a key , by sorting it, making it a list, then joining it
+        # the key is the sorted, the values are the unsorted word
+        key = ''.join(sorted(list(s)))
+        mapping[key].append(s)
+
+    result = []
+    for m in mapping.values():
+        result.append(m)
+
+    return result
+######################################################################################
