@@ -2195,13 +2195,33 @@ Example 3:
 Input: intervals = [], newInterval = [5,7]
 Output: [[5,7]]
 Example 4:
-kkkkkkkkkkk
 Input: intervals = [[1,5]], newInterval = [2,3]
 Output: [[1,5]]
 Example 5:
 
 Input: intervals = [[1,5]], newInterval = [2,7]
 Output: [[1,7]]
+
+ex. ----  ---  -----  -----
+     ----
+     so  we append the first interval with our end of the new one inserting bc they overlap
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        i = 0
+        while( i<len(intervals) and intervals[i][0] < newInterval[0]):
+            i+= 1
+        
+        intervals.insert(i,newInterval)
+        
+        ans = []
+        for interval in ::
+            if len(ans) == 0 or ans[-1][1] < interval[0]:
+                ans.append(interval)
+            else:
+                ans[-1][1] = max(ans[-1][1], interval[1])
+        return ans
+
 
 ###############################################################################################################
 
@@ -2242,6 +2262,7 @@ Input: s = "10101"
 Output: 4
 Explanation: There are 4 substrings: "10", "01", "10", "01" that have equal number of consecutive 1's and 0's.
 
+#  just need to keep track of how many 0's previously and 1's right now
 def countBinarySubstrings(self, s: str) -> int:
     ans, prev, cur = 0, 0, 1
     for i in range(1, len(s)):
