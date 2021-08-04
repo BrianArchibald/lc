@@ -124,21 +124,19 @@ you find your target
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        start = 0
-        end = len(nums)-1
-
-        while start < end:
-            mid = (start + len(nums)) // 2
-            num = nums[mid]
-            print(start, mid, end)
-            if target == num:
-                return mid
-            elif target > mid:
-                start = mid
-            elif target < mid:
-                end = mid
-
+        N = len(nums)
+        l, r = 0, N-1
+        
+        while l <= r:
+            mid = (l+r) // 2
+            if target == nums[mid]: return mid
+            
+            elif target > nums[mid]:
+                l = mid + 1
+            else:
+                r = mid -1
         return -1
+              
 
 ########################################################################
 
@@ -200,6 +198,27 @@ class Solution:
 1st d 2
 2nd c 4
 2nd d 2
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        from collections import Counter
+        
+        freq = Counter(s)
+        
+        odd = False
+        res = 0
+        
+        for k,v in freq.items():
+            if v % 2 == 0:
+                res += v
+            else:
+                res += v-1
+                odd = True
+        
+        if odd:
+            res += 1
+            
+        return res
 
 #########################################################################
 
@@ -266,6 +285,18 @@ our val 9
 sorted piles [1, 2, 2, 4, 7, 8]
 end index -  5
 last_sorted_piles 2
+
+
+# take the 2nd pile and pop the end one off each time
+def maxCoins(self, piles: List[int]) -> int:
+        piles = sorted(piles, reverse=True)
+        answer = 0
+        index = 1
+        while index < len(piles):
+            answer += piles[index]
+            piles.pop()
+            index += 2
+        return answer
 
 ##########################################################################
 
