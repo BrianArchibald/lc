@@ -446,6 +446,66 @@ class Solution:
                 seen[v] = i 
 
 ###############################################################################################################
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+       
+        nums.sort()
+        res = []
+
+        for i in range(len(nums) -2): #1
+            if i > 0 and nums[i] == nums[i-1]: #2
+                continue
+            left = i + 1 #3
+            right = len(nums) - 1 #4
+           
+            while left < right:  
+                temp = nums[i] + nums[left] + nums[right]
+                                   
+                if temp > 0:
+                    right -= 1
+                   
+                elif temp < 0:
+                    left += 1
+               
+                else:
+                    res.append([nums[i], nums[left], nums[right]]) #5
+                    while left < right and nums[left] == nums[left + 1]: #6
+                        left += 1
+                    while left < right and nums[right] == nums[right-1]:#7
+                        right -= 1    #8
+               
+                    right -= 1 #9
+                    left += 1 #10
+
+
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        candidates.sort()
+        self.dfs(candidates, target, [], res)
+        return res
+   
+   
+    def dfs(self, candidates, target, path, res):
+        if target < 0:
+            return
+       
+        if target == 0:
+            res.append(path)
+            return res
+       
+        for i in range(len(candidates)):
+            if i > 0 and candidates[i] == candidates[i-1]: #1
+                continue #2
+            self.dfs(candidates[i+1:], target - candidates[i], path+[candidates[i]], res) #3
+The only differences are lines #1, 2, 3. The difference in problem statement in this one and combinations problem of my previous post is >>>candidates must be used once<<< and lines #1 and 2 are here to take care of this. Line #1 has two components where first i > 0 and second candidates[i] == candidates[i-1]. The second component candidates[i] == candidates[i-1] is to take care of duplicates in the candidates variable as was instructed in the problem statement. Basically, if the next number in candidates is the same as the previous one, it means that it has already been taken care of, so continue. The first component takes care of cases like an input candidates = [1] with target = 1 (try to remove this component and submit your solution. You'll see what I mean). The rest is similar to the previous post
+
+#################################################################################################################33
 
 
 121. Best Time to Buy and Sell Stock
