@@ -446,6 +446,11 @@ class Solution:
                 seen[v] = i 
 
 ###############################################################################################################
+# len(nums)-2 is because we need at least 3 numbers to continue.
+# if i > 0 and nums[i] == nums[i-1] is because when i = 0, it doesn't need to check if it's a duplicate element since it doesn't even have a previous element to compare with.
+# And nums[i] == nums[i-1] is to prevent checking duplicate again.
+# (This seems to be a good pattern which has been seen in other questions as well).
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
        
