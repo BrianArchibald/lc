@@ -2447,6 +2447,23 @@ class Solution:
 #         self.right = right
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if p and q:
+            return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        return p is q
 
+# yt
+#  doing depth first search
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
 
+        def dfs(p,q):
+            #   base case, when you are at the bottom of both trees
+            if not p and not q:
+                return True
+            elif (p and not q) or (q and not p) or p.val != q.val:
+                return False
+            
+            return dfs(p.left, q.left) and dfs(p.right, q.right)
+        
+        return dfs(p,q)
 
