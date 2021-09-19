@@ -2476,3 +2476,20 @@ class Solution:
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+        # helper function
+        def dfs(node):
+            
+            # base case
+            if not node:
+                return
+
+            dfs(node.left)
+            dfs(node.right)
+
+            # swap values of left and right
+            node.left, node.right = node.right, node.left
+            
+        dfs(root)
+
+        return root
