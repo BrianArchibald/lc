@@ -2544,6 +2544,25 @@ class Solution:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        
+        def is_the_same(s, t):
+            
+            if not s and not t:
+                # both s and t are empty
+                return True
+            
+            elif s and t:
+                # both s and t are non-empty
+                # keep checking in DFS
+                return s.val == t.val and is_the_same(s.left, t.left) and is_the_same(s.right, t.right)
+            
+            else:
+                # one is empty, the other is non-empty
+                return False
+            
+        # -----------------------------------------------------------
+        return bool(s and t) and (is_the_same(s, t) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t) )
 
