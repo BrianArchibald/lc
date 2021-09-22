@@ -2419,6 +2419,16 @@ def countBinarySubstrings(self, s: str) -> int:
 
 #################################################################################################################
 
+###############################################################################################################
+
+##  Binary Trees  ##
+
+Preorder  n l r 
+Inorder   l n r 
+Postorder l r n
+
+#  Basical the prefix  tells us where we are going to deal  with teh n or node in the traversal
+
 104. Maximum Depth of Binary Tree
 Easy
 
@@ -2524,3 +2534,16 @@ class Solution:
         dfs(root, 0)
         #  we dont need the level output, so just return the vals
         return d.values()
+
+############################################################################################################
+#  check if one tree is part of another tree
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+
