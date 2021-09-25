@@ -1,5 +1,6 @@
 1436. Destination City
-You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
+You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from typing import OrderedDict
+from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
 
 It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
 
@@ -2601,3 +2602,23 @@ class Solution:
         root.left = self.buildTree(inorder[:inorderIndex], postorder)
 
         return root
+
+###################################################################
+################################################################################
+#################################################################################################
+#######################################################################################################
+
+##  Binary Tree Crash Course
+
+Pre order (DFS) -- go to node first, then left, good for copying a tree  [1,2,4,5,3]
+Post order -- opposite of pre, leaves first than node [4,5,2,3,1]
+In order -- visit left subtree before right [4,2,5,1,3]
+Level order (BFS) -- go level by level [1,2,3,4,5]
+
+      1
+   2     3
+4    5
+
+
+in a binary search tree, inorder will give the nodes in smallest to largest, good for flattening to array
+
