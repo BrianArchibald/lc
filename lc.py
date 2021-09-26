@@ -2622,3 +2622,19 @@ Level order (BFS) -- go level by level [1,2,3,4,5]
 
 in a binary search tree, inorder will give the nodes in smallest to largest, good for flattening to array
 
+##  Preorder traversal
+
+##
+144. Binary Tree Preorder Traversal
+Easy
+
+Given the root of a binary tree, return the preorder traversal of its nodes' values.
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
