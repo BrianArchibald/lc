@@ -2638,3 +2638,8 @@ Given the root of a binary tree, return the preorder traversal of its nodes' val
 #         self.right = right
 class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
+
+
