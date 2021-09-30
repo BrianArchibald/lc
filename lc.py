@@ -2642,6 +2642,25 @@ class Solution:
             return []
         return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
 
+##  Iterative
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        
+        ret = []
+        stack = [root]
+        
+        while stack:
+            node = stack.pop()
+            ret.append(node.val)
+            
+            if node.right: stack.append(node.right)
+            if node.left: stack.append(node.left)
+                
+        return ret
+
+
 ###########################################################################################
 
 # Binary tree post order
@@ -2658,6 +2677,25 @@ class Solution:
         if not root:
             return []
         return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
+
+# Iteratively
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        from collections import deque
+        
+        ret = deque()
+        stack = [root]
+        
+        while stack:
+            node = stack.pop()
+            ret.appendleft(node.val)
+            
+            if node.left: stack.append(node.left)
+            if node.right: stack.append(node.right)
+                
+        return ret
 
 ############################################################################################################
 
@@ -2676,3 +2714,16 @@ class Solution:
         if not root:
             return []
         return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+
+## Iteratively
+        ret = []
+        stack = []
+        while root is not None or stack:
+            while root is not None:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            ret.append(root.val)
+            root = root.right
+        return ret
+
