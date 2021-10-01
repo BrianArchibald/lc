@@ -2709,6 +2709,7 @@ Given the root of a binary tree, return the inorder traversal of its nodes' valu
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
@@ -2727,3 +2728,42 @@ class Solution:
             root = root.right
         return ret
 
+###################################################################################################################
+
+##  BFS  N-ary tree
+
+589. N-ary Tree Preorder Traversal
+Easy
+Given the root of an n-ary tree, return the preorder traversal of its nodes' values.
+
+Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples)
+Example 1:
+Input: root = [1,null,3,2,4,null,5,6]
+Output: [1,3,5,6,2,4]
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return []
+        
+        ret = []
+        stack = [root]
+        
+        while stack:
+            node = stack.pop()
+            ret.append(node.val)
+            
+            #  for postorder dont reverse the list
+            #  reverse the children list = [::-1]
+            for child in node.children[::-1]:
+                stack.append(child)
+                
+        return ret
