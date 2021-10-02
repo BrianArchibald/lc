@@ -2609,6 +2609,8 @@ class Solution:
 #######################################################################################################
 
 ##  Binary Tree Crash Course
+##  Examples of recursive or iteratively for pre in post order, prefix is just where the node is at
+## ex. pre (node is first)
 
 Pre order (DFS) -- go to node first, then left, good for copying a tree  [1,2,4,5,3]
 Post order -- opposite of pre, leaves first than node [4,5,2,3,1]
