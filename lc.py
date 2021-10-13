@@ -2798,4 +2798,21 @@ Example 2:
 Input: root = [5,1,4,null,null,3,6]
 Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
+        def dfs(lower,upper,node):
+            if not node:
+                return True
+            elif node.val<=lower or node.val>=upper:
+                return False
+            else:
+                return dfs(lower,node.val,node.left) and dfs(node.val, upper, node.right)
+        
+        return dfs(float('-inf'),float('inf'),root)
