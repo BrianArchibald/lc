@@ -2833,3 +2833,24 @@ Example 2:
 Input: root = [5,3,6,2,4,null,null,1], k = 3
 Output: 3
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        array = []
+        
+        def inorder(node):
+            if not node:
+                return
+            
+            inorder(node.left)
+            array.append(node.val)
+            inorder(node.right)
+            
+        inorder(root)
+        
+        return(array[k-1])
