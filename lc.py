@@ -1,5 +1,5 @@
 1436. Destination City
-You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from typing import OrderedDict
+You are given the array paths, where paths[i] = [cityAi, cityBi] means there exists a direct path going from typing import OrderedDict, no_type_check_decorator
 from cityAi to cityBi. Return the destination city, that is, the city without any path outgoing to another city.
 
 It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
@@ -2890,3 +2890,17 @@ Output: 2
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        self.ans = None
+
+        def dfs(node):
+            if not node:
+                return False
+            left = dfs(node.left)
+            right = dfs(node.right)
+            cur = node==p or node==q
+            if (left and right) or (cur and right) or (cur and left):
+                self.ans = node
+                return
+            return left or right or cur
+        dfs(root)
+        return self.ans
