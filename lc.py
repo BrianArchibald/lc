@@ -127,17 +127,17 @@ class Solution:
     def search(self, nums: List[int], target: int) -> int:
         N = len(nums)
         l, r = 0, N-1
-        
+
         while l <= r:
             mid = (l+r) // 2
             if target == nums[mid]: return mid
-            
+
             elif target > nums[mid]:
                 l = mid + 1
             else:
                 r = mid -1
         return -1
-              
+
 
 ########################################################################
 
@@ -203,22 +203,22 @@ class Solution:
 class Solution:
     def longestPalindrome(self, s: str) -> int:
         from collections import Counter
-        
+
         freq = Counter(s)
-        
+
         odd = False
         res = 0
-        
+
         for k,v in freq.items():
             if v % 2 == 0:
                 res += v
             else:
                 res += v-1
                 odd = True
-        
+
         if odd:
             res += 1
-            
+
         return res
 
 #########################################################################
@@ -415,7 +415,7 @@ This is a better optimized solution:
        seen = {}
        for i, value in enumerate(nums): #1
            remaining = target - nums[i] #2
-           
+
            if remaining in seen: #3
                return [i, seen[remaining]]  #4
            else:
@@ -428,7 +428,7 @@ Given an array of integers numbers that is already sorted in non-decreasing orde
 Return the indices of the two numbers (1-indexed) as an integer array answer of size 2, where 1 <= answer[0] < answer[1] <= numbers.length.
 The tests are generated such that there is exactly one solution. You may not use the same element twice.
 
- 
+
 
 Example 1:
 
@@ -442,9 +442,9 @@ class Solution:
         for i, v in enumerate(numbers):
             remaining = target - numbers[i]
             if remaining in seen:
-                return [seen[remaining] + 1, i + 1] 
+                return [seen[remaining] + 1, i + 1]
             else:
-                seen[v] = i 
+                seen[v] = i
 
 ###############################################################################################################
 # len(nums)-2 is because we need at least 3 numbers to continue.
@@ -454,7 +454,7 @@ class Solution:
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-       
+
         nums.sort()
         res = []
 
@@ -463,23 +463,23 @@ class Solution:
                 continue
             left = i + 1 #3
             right = len(nums) - 1 #4
-           
-            while left < right:  
+
+            while left < right:
                 temp = nums[i] + nums[left] + nums[right]
-                                   
+
                 if temp > 0:
                     right -= 1
-                   
+
                 elif temp < 0:
                     left += 1
-               
+
                 else:
                     res.append([nums[i], nums[left], nums[right]]) #5
                     while left < right and nums[left] == nums[left + 1]: #6
                         left += 1
                     while left < right and nums[right] == nums[right-1]:#7
                         right -= 1    #8
-               
+
                     right -= 1 #9
                     left += 1 #10
 
@@ -495,16 +495,16 @@ class Solution(object):
         candidates.sort()
         self.dfs(candidates, target, [], res)
         return res
-   
-   
+
+
     def dfs(self, candidates, target, path, res):
         if target < 0:
             return
-       
+
         if target == 0:
             res.append(path)
             return res
-       
+
         for i in range(len(candidates)):
             if i > 0 and candidates[i] == candidates[i-1]: #1
                 continue #2
@@ -522,7 +522,7 @@ You want to maximize your profit by choosing a single day to buy one stock and c
 
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
- 
+
 
 Example 1:
 
@@ -545,7 +545,7 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         maxProfit = 0
         minPurchase = prices[0]
-        for i in range(1, len(prices)):		
+        for i in range(1, len(prices)):
             print(prices[i], 'i')
             maxProfit = max(maxProfit, prices[i] - minPurchase)
             print(maxProfit, 'maxprofit')
@@ -581,7 +581,7 @@ def maxProfit(prices):
 
 217. Contains Duplicate
 Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
- 
+
 Example 1:
 
 Input: nums = [1,2,3,1]
@@ -594,7 +594,7 @@ Example 3:
 
 Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
- 
+
 Constraints:
 
 1 <= nums.length <= 105
@@ -660,7 +660,7 @@ class Solution:
             #inc/dec pointers
             lo += 1
             hi -= 1
-        return res         
+        return res
 ################################################################################################
 
 53. Maximum Subarray
@@ -679,7 +679,7 @@ Example 3:
 
 Input: nums = [5,4,-1,7,8]
 Output: 23
- 
+
 Constraints:
 1 <= nums.length <= 3 * 104
 -105 <= nums[i] <= 105
@@ -693,7 +693,7 @@ Constraints:
             print('cur..sum', current_sum)
             max_sum = max(current_sum, max_sum)
         return max_sum
-               
+
 [-2,1,-3,4,-1,2,1,-5,4]
 cur..sum 1
 cur..sum -2
@@ -721,7 +721,7 @@ Example 2:
 Input: nums = [-2,0,-1]
 Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
- 
+
 
 Constraints:
 
@@ -765,13 +765,13 @@ class Solution:
     def findMin(self, nums: List[int]) -> int:
         left = 0
         right = len(nums) - 1
-        
+
         while left < right:
             midpoint = left + right // 2
             print('mid', nums[midpoint])
             print('right', nums[right])
             print('left', nums[left])
-            
+
             if nums[midpoint] > 0 and nums[midpoint] < nums[midpoint -1]:
                 return nums[midpoint]
             elif nums[left] <= nums[midpoint] and nums[midpoint] > nums[right]:
@@ -785,8 +785,8 @@ right 2
 left 3
 mid 1
 right 2
-left 4           
-        
+left 4
+
 ##################################################################################################################################################################
 
 33. Search in Rotated Sorted Array
@@ -823,34 +823,34 @@ class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left = 0
         right = len(nums) - 1
-        
+
         while left < right:
             midpoint = (left + right) // 2
-            
+
             if nums[midpoint] > nums[right]:
                 left = midpoint + 1
             else:
                 right = midpoint
-        
+
         start = left
-        left = 0    
+        left = 0
         right = len(nums) - 1
-        
+
         if target >= nums[start] and target <= nums[right]:
             left = start
         else:
             right = start
-        
+
         while left <= right:
             midpoint = (left + right) // 2
-            
+
             if nums[midpoint] == target:
                 return midpoint
             elif nums[midpoint] > target:
                 right = midpoint - 1
             else:
                 left = midpoint + 1
-                
+
         return -1
 
 ################################################################################################################
@@ -872,7 +872,7 @@ Example 3:
 
 Input: nums = [0]
 Output: []
- 
+
 Constraints:
 0 <= nums.length <= 3000
 -105 <= nums[i] <= 105
@@ -880,38 +880,38 @@ Constraints:
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-        
+
         triplets = []
-        
+
         for i in range(len(nums) - 2):
-            
-            # this is for non distinct 
+
+            # this is for non distinct
             if i > 0 and nums[i] == nums[i -1]: continue
 
             left = i + 1
             right = len(nums) - 1
-            
+
             while left < right:
-                
+
                 current_sum = nums[i] + nums[left] + nums[right]
-                
+
                 if current_sum == 0:
                     triplets.append([nums[i], nums[left], nums[right]])
-                    
-                    
+
+
                     # next two are for non distinct too
                     while left < right and nums[left] == nums[left + 1]:
                         left += 1
-                    
+
                     while left < right and nums[right] == nums[right - 1]:
                         right -= 1
-                    
+
                     left += 1
                     right -= 1
-                
+
                 elif current_sum < 0:
                     left += 1
-                
+
                 else:
                     right -= 1
         return triplets
@@ -939,7 +939,7 @@ Example 4:
 
 Input: height = [1,2,1]
 Output: 2
- 
+
 Constraints:
 n == height.length
 2 <= n <= 105
@@ -950,7 +950,7 @@ class Solution:
         max_area = 0
         left = 0
         right = len(height) - 1
-        
+
         while left < right:
             if height[left] < height[right]:
                 max_area = max(max_area, height[left] * (right - left))
@@ -974,30 +974,30 @@ Example 2:
 
 Input: a = 2, b = 3
 Output: 5
- 
+
 Constraints:
 -1000 <= a, b <= 1000
 
 
 class Solution:
     def getSum(self, a: int, b: int) -> int:
-        
+
         # 32 bit mask in hexadecimal
         mask = 0xffffffff
-        
-        # works both as while loop and single value check 
+
+        # works both as while loop and single value check
         while (b & mask) > 0:
-            
+
             carry = ( a & b ) << 1
-            a = (a ^ b) 
+            a = (a ^ b)
             b = carry
-        
+
         # handles overflow
         return (a & mask) if b > 0 else a
 
 ######################################################################################################3
 
-70. Climbing Stairs   Fibonacci is answer --- 
+70. Climbing Stairs   Fibonacci is answer ---
 Easy
 You are climbing a staircase. It takes n steps to reach the top.
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
@@ -1017,7 +1017,7 @@ Explanation: There are three ways to climb to the top.
 1. 1 step + 1 step + 1 step
 2. 1 step + 2 steps
 3. 2 steps + 1 step
- 
+
 Constraints:
 
 1 <= n <= 45
@@ -1028,14 +1028,14 @@ class Solution:
         for i in range(n):
             a, b = b, a + b
         return a
-        
+
 #########################################################################################################
 
 3. Longest Substring Without Repeating Characters     ###  Sliding window example 2
 Medium
 Given a string s, find the length of the longest substring without repeating characters.
 
- 
+
 Example 1:
 
 Input: s = "abcabcbb"
@@ -1076,7 +1076,7 @@ class Solution:
                 # update start of string index to the next index
                 start = max(start, dic[ch]+1)
                 print('start', start)
-            # add/update char to/of dictionary 
+            # add/update char to/of dictionary
             dic[ch] = i
         # answer is either in the begining/middle OR some mid to the end of string
         return max(res, len(s)-start)
@@ -1129,7 +1129,7 @@ Input: s = "AABABBA", k = 1
 Output: 4
 Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
 The substring "BBBB" has the longest repeating letters, which is 4.
- 
+
 Constraints:
 1 <= s.length <= 105
 s consists of only uppercase English letters.
@@ -1148,23 +1148,23 @@ class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         i, j, max_count, max_len = 0, 0, 0, 0
         window = [0 for _ in range(26)]
-        
+
         while j < len(s):
             index = ord(s[j]) - ord('A')
             window[index] += 1
             max_count = max(max_count, window[index])
-            
+
             while j - i + 1 - max_count > k:
                 window[ord(s[i]) - ord('A')] -= 1
                 i += 1
             max_len = max(max_len, j - i + 1)
             j += 1
-            
-        return max_len 
+
+        return max_len
 
 ####################################################################################################################
 
-643. Maximum Average Subarray I   ##   Sliding Window    ## 
+643. Maximum Average Subarray I   ##   Sliding Window    ##
 Easy
 You are given an integer array nums consisting of n elements, and an integer k.
 Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
@@ -1184,27 +1184,27 @@ class Solution:
         '''
         [1,12,-5,-6,50,3]
          ^
-         i 
+         i
            ^
-           j      
-        
+           j
+
         '''
         maxSum = windowSum = sum(nums[:k])
         for i in range(k, len(nums)):
             windowSum += nums[i] - nums[i - k]
             maxSum = max(maxSum, windowSum)
         return maxSum / k
-        
-            
+
+
 #################################################################################################################
-# 
+#
 1800. Maximum Ascending Subarray Sum
 Easy
 Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in nums.
 
 A subarray is defined as a contiguous sequence of numbers in an array.
 A subarray [numsl, numsl+1, ..., numsr-1, numsr] is ascending if for all i where l <= i < r, numsi < numsi+1. Note that a subarray of size 1 is ascending.
- 
+
 Example 1:
 
 Input: nums = [10,20,30,5,10,50]
@@ -1224,18 +1224,18 @@ Example 4:
 
 Input: nums = [100,10,1]
 Output: 100
- 
+
 Constraints:
 1 <= nums.length <= 100
 1 <= nums[i] <= 100
-        
+
 class Solution:
     def maxAscendingSum(self, nums: List[int]) -> int:
         windowSum = maxSum = nums[0]
-        
+
         for i in range(1, len(nums)):
             if nums[i] > nums[i - 1]:
-                windowSum += nums[i] 
+                windowSum += nums[i]
                 maxSum = max(maxSum, windowSum)
             else:
                 windowSum = nums[i]
@@ -1272,7 +1272,7 @@ Example 3:
 
 Input: arr = [10,11,12]
 Output: 66
- 
+
 Constraints:
 1 <= arr.length <= 100
 1 <= arr[i] <= 1000
@@ -1290,17 +1290,17 @@ Example 2:
 
 Input: s = "rat", t = "car"
 Output: false
- 
+
 Constraints:
 1 <= s.length, t.length <= 5 * 104
 s and t consist of lowercase English letters.
- 
+
 Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         return sorted(s) == sorted(t)
-              
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         dict1 = {}
@@ -1329,7 +1329,7 @@ Example 2:
 
 Input: s = "a", t = "a"
 Output: "a"
- 
+
 Constraints:
 
 m == s.length
@@ -1425,7 +1425,7 @@ class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
         lookup = {'}':'{', ')':'(', ']':'['}
-        
+
         for item in s:
             if item in lookup.values():
                 stack.append(item)
@@ -1433,15 +1433,15 @@ class Solution:
                 stack.pop()
             else:
                 return False
-        
+
         return stack == []
-               
+
 #####################################################################################################################
 
 125. Valid Palindrome
 Easy
 Given a string s, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
- 
+
 Example 1:
 
 Input: s = "A man, a plan, a canal: Panama"
@@ -1455,7 +1455,7 @@ Explanation: "raceacar" is not a palindrome.
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-            
+
         l, r = 0, len(s) - 1
         while l < r:
             if not s[l].isalnum():
@@ -1483,7 +1483,7 @@ Add to List
 Share
 Given a string s, return the longest palindromic substring in s.
 
- 
+
 
 Example 1:
 
@@ -1507,7 +1507,7 @@ class Solution:
             p2 = self.get_palindrome(s, i, i)
             p = max([p, p1, p2], key=lambda x: len(x))
         return p
-    
+
     def get_palindrome(self, s: str, l: int, r: int) -> str:
         while l >= 0 and r < len(s) and s[l] == s[r]:
             l -= 1
@@ -1532,7 +1532,7 @@ A string is a palindrome when it reads the same backward as forward.
 
 A substring is a contiguous sequence of characters within the string.
 
- 
+
 
 Example 1:
 
@@ -1544,7 +1544,7 @@ Example 2:
 Input: s = "aaa"
 Output: 6
 Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
- 
+
 
 Constraints:
 
@@ -1559,7 +1559,7 @@ class Solution:
     def countSubstrings(self, s: str) -> int:
         output = 0
         N = len(s)
-        
+
         for a in range(N):
             i, j = a, a
             while 0<=i<N and 0<=j<N and s[i] == s[j]:
@@ -1589,7 +1589,7 @@ Note:
 
 Note that in some languages, such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.
 In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 3, the input represents the signed integer. -3.
- 
+
 
 Example 1:
 
@@ -1606,7 +1606,7 @@ Example 3:
 Input: n = 11111111111111111111111111111101
 Output: 31
 Explanation: The input binary string 11111111111111111111111111111101 has a total of thirty one '1' bits.
- 
+
 
 Constraints:
 
@@ -1630,7 +1630,7 @@ Add to List
 Share
 Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
 
- 
+
 
 Example 1:
 
@@ -1651,12 +1651,12 @@ Explanation:
 3 --> 11
 4 --> 100
 5 --> 101
- 
+
 
 Constraints:
 
 0 <= n <= 105
- 
+
 
 Follow up:
 
@@ -1666,10 +1666,10 @@ Can you do it without using any built-in function (i.e., like __builtin_popcount
 class Solution:
     def countBits(self, n: int) -> List[int]:
         output = [0]
-        
+
         while (len(output) <= n):
             output.extend([i+1 for i in output])
-            
+
         return output[:n+1]
 
 # brute force
@@ -1703,7 +1703,7 @@ Example 4:
 Input: nums = [0]
 Output: 1
 Explanation: n = 1 since there is 1 number, so all numbers are in the range [0,1]. 1 is the missing number in the range since it does not appear in nums.
- 
+
 Constraints:
 
 n == nums.length
@@ -1741,7 +1741,7 @@ Follow up:
 
 If this function is called many times, how would you optimize it?
 
- 
+
 
 Example 1:
 
@@ -1753,7 +1753,7 @@ Example 2:
 Input: n = 11111111111111111111111111111101
 Output:   3221225471 (10111111111111111111111111111111)
 Explanation: The input binary string 11111111111111111111111111111101 represents the unsigned integer 4294967293, so return 3221225471 which its binary representation is 10111111111111111111111111111111.
- 
+
 
 Constraints:
 
@@ -1795,7 +1795,7 @@ Example 5:
 
 Input: coins = [1], amount = 2
 Output: 2
- 
+
 Constraints:
 
 1 <= coins.length <= 12
@@ -1837,14 +1837,14 @@ Output: 1
 Constraints:
 1 <= nums.length <= 2500
 -104 <= nums[i] <= 104
- 
+
 Follow up: Can you come up with an algorithm that runs in O(n log(n)) time complexity?
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         if not nums:
             return 0
-        
+
         n = len(nums)
         dp = [1] * n
 
@@ -1852,7 +1852,7 @@ class Solution:
             for j in range(i):
                 if nums[i] > nums[j]:
                     dp[i] = max(dp[i], 1 + dp[j])
-                    
+
         return max(dp)
 
 i########################################################################################################################
@@ -1864,7 +1864,7 @@ Given a string s and a dictionary of strings wordDict, return true if s can be s
 
 Note that the same word in the dictionary may be reused multiple times in the segmentation.
 
- 
+
 
 Example 1:
 
@@ -1881,7 +1881,7 @@ Example 3:
 
 Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
 Output: false
- 
+
 
 Constraints:
 
@@ -1895,14 +1895,14 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         dp = [False] * (len(s) + 1)
         dp[0] = True
-        
+
         for i in range(1, len(s) +1):
             for j in range(i):
                 if dp[j] and s[j:i] in wordDict:
                     dp[i] = True
         return dp[len(s)]
 #####################################################################################################################
-377. Combination Sum IV   
+377. Combination Sum IV
 
 DP ---
 Also, just to take this chance to review some high level rules for dp. DP algorithm is best for:
@@ -1935,7 +1935,7 @@ Example 2:
 
 Input: nums = [9], target = 3
 Output: 0
- 
+
 Constraints:
 
 1 <= nums.length <= 200
@@ -1947,23 +1947,23 @@ class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         dp = [0] * (target + 1)
         dp[0] = 1
-        
+
         for t in range(1, target + 1):
             for n in nums:
                 if n <= t:
                     dp[t] += dp[t - n]
-                    
+
         return dp[target]
 
 ###############################################################################################################
 
-198. House Robber   # DP  
+198. House Robber   # DP
 Medium
 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
 
 Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
 
- 
+
 
 Example 1:
 
@@ -1977,7 +1977,7 @@ Input: nums = [2,7,9,3,1]
 Output: 12
 Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
 Total amount you can rob = 2 + 9 + 1 = 12.
- 
+
 
 Constraints:
 
@@ -1990,16 +1990,16 @@ class Solution:
             return 0
         if len(nums) < 3:
             return max(nums)
-        
+
         dp = [0] * len(nums)
         dp[0] = nums[0]
         dp[1] = max(nums[0], nums[1])
-        
+
         for i in range(2, len(nums)):
             dp[i] = max(nums[i] + dp[i-2], dp[i-1])
             print('dp', dp)
             print(nums[i] + dp[i-2], dp[i-1])
-            
+
         return dp[-1]
 ##############################################################################################################
 213. House Robber II
@@ -2022,7 +2022,7 @@ Example 3:
 
 Input: nums = [0]
 Output: 0
- 
+
 Constraints:
 
 1 <= nums.length <= 100
@@ -2032,21 +2032,21 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         if not nums: return 0
         if len(nums) == 1: return nums[0]
-        
+
         dp1, dp2 = 0, 0
         for n in nums[:-1]:
             tmp = dp1
             dp1 = max(dp2+n, dp1)
             dp2 = tmp
-            
+
         dpp1, dpp2 = 0, 0
         for n in nums[1:]:
             tmp = dpp1
             dpp1 = max(dpp2+n, dpp1)
             dpp2 = tmp
-        
+
         return max(dp1, dpp1)
-        
+
 ############################################################################################################
 
 91. Decode Ways  # DP
@@ -2089,7 +2089,7 @@ Example 4:
 Input: s = "06"
 Output: 0
 Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
- 
+
 Constraints:
 
 1 <= s.length <= 100
@@ -2119,19 +2119,19 @@ index 3: # of ways to parse "231" => "2 3 1" and "23 1" => dp[3] = 2
         if not s or s[0]=='0':
             return 0
 
-        dp = [0 for x in range(len(s) + 1)] 
+        dp = [0 for x in range(len(s) + 1)]
 
         # base case initialization
         dp[0:2] = [1,1]
 
-        for i in range(2, len(s) + 1): 
+        for i in range(2, len(s) + 1):
             # One step jump
             if 0 < int(s[i-1:i]):    #(2)
                 dp[i] = dp[i - 1]
             # Two step jump
             if 10 <= int(s[i-2:i]) <= 26: #(3)
                 dp[i] += dp[i - 2]
-                
+
         return dp[-1]
 
 i######################################################################################################
@@ -2172,19 +2172,19 @@ class Solution:
         0 1 1 1 1
         1 1 2 3 4
         2 1 3 6 10
-        
+
         just adding top and left to get item
 
         '''
         dp = [[0 for col in range(m)] for row in range(n)]
-        
+
         for i in range(m): dp[0][i] = 1
         for i in range(n): dp[i][0] = 1
-            
+
         for row in range(1,n):
             for col in range(1,m):
                 dp[row][col] = dp[row-1][col] + dp[row][col-1]
-                
+
         return dp[n-1][m-1]
 
 i###########################################################################################################################
@@ -2204,7 +2204,7 @@ Example 2:
 Input: nums = [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
- 
+
 
 Constraints:
 
@@ -2215,13 +2215,13 @@ Constraints:
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         max_jump, N, i = 0, len(nums) -1, 0
-        
+
         while i <= max_jump and i < N:
             if max_jump >= N:
                 break
             max_jump = max(max_jump, i+nums[i])
             i += 1
-            
+
         return max_jump >= N
 
 ###################################################################################################
@@ -2354,9 +2354,9 @@ class Solution:
         i = 0
         while( i<len(intervals) and intervals[i][0] < newInterval[0]):
             i+= 1
-        
+
         intervals.insert(i,newInterval)
-        
+
         ans = []
         for interval in ::
             if len(ans) == 0 or ans[-1][1] < interval[0]:
@@ -2424,8 +2424,8 @@ def countBinarySubstrings(self, s: str) -> int:
 
 ##  Binary Trees  ##
 
-Preorder  n l r 
-Inorder   l n r 
+Preorder  n l r
+Inorder   l n r
 Postorder l r n
 
 #  Basical the prefix  tells us where we are going to deal  with teh n or node in the traversal
@@ -2473,9 +2473,9 @@ class Solution:
                 return True
             elif (p and not q) or (q and not p) or p.val != q.val:
                 return False
-            
+
             return dfs(p.left, q.left) and dfs(p.right, q.right)
-        
+
         return dfs(p,q)
 
 #################################################################################################################################
@@ -2490,7 +2490,7 @@ class Solution:
 
         # helper function
         def dfs(node):
-            
+
             # base case
             if not node:
                 return
@@ -2500,7 +2500,7 @@ class Solution:
 
             # swap values of left and right
             node.left, node.right = node.right, node.left
-            
+
         dfs(root)
 
         return root
@@ -2524,14 +2524,14 @@ Output: [[3],[9,20],[15,7]]
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         d = defaultdict(list)
-        
+
         def dfs(node, level):
             if not node: return
-            
+
             d[level].append(node.val)
             dfs(node.left, level+1)
             dfs(node.right, level+1)
-            
+
         dfs(root, 0)
         #  we dont need the level output, so just return the vals
         return d.values()
@@ -2548,22 +2548,22 @@ class Solution:
 
 class Solution:
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
-        
+
         def is_the_same(s, t):
-            
+
             if not s and not t:
                 # both s and t are empty
                 return True
-            
+
             elif s and t:
                 # both s and t are non-empty
                 # keep checking in DFS
                 return s.val == t.val and is_the_same(s.left, t.left) and is_the_same(s.right, t.right)
-            
+
             else:
                 # one is empty, the other is non-empty
                 return False
-            
+
         # -----------------------------------------------------------
         return bool(s and t) and (is_the_same(s, t) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t) )
 
@@ -2594,7 +2594,7 @@ class Solution:
     def buildTree(self, inorder, postorder):
         if not inorder or not postorder:
             return None
-        
+
         root = TreeNode(postorder.pop())
         inorderIndex = inorder.index(root.val)
 
@@ -2649,17 +2649,17 @@ class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        
+
         ret = []
         stack = [root]
-        
+
         while stack:
             node = stack.pop()
             ret.append(node.val)
-            
+
             if node.right: stack.append(node.right)
             if node.left: stack.append(node.left)
-                
+
         return ret
 
 
@@ -2686,17 +2686,17 @@ class Solution:
         if not root:
             return []
         from collections import deque
-        
+
         ret = deque()
         stack = [root]
-        
+
         while stack:
             node = stack.pop()
             ret.appendleft(node.val)
-            
+
             if node.left: stack.append(node.left)
             if node.right: stack.append(node.right)
-                
+
         return ret
 
 ############################################################################################################
@@ -2755,19 +2755,19 @@ class Solution:
     def preorder(self, root: 'Node') -> List[int]:
         if not root:
             return []
-        
+
         ret = []
         stack = [root]
-        
+
         while stack:
             node = stack.pop()
             ret.append(node.val)
-            
+
             #  for postorder dont reverse the list
             #  reverse the children list = [::-1]
             for child in node.children[::-1]:
                 stack.append(child)
-                
+
         return ret
 
 
@@ -2785,7 +2785,7 @@ A valid BST is defined as follows:
 The left subtree of a node contains only nodes with keys less than the node's key.
 The right subtree of a node contains only nodes with keys greater than the node's key.
 Both the left and right subtrees must also be binary search trees.
- 
+
 
 Example 1:
 
@@ -2814,7 +2814,7 @@ class Solution:
                 return False
             else:
                 return dfs(lower,node.val,node.left) and dfs(node.val, upper, node.right)
-        
+
         return dfs(float('-inf'),float('inf'),root)
 
 ###########################################################################################################################
@@ -2842,17 +2842,17 @@ Output: 3
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         array = []
-        
+
         def inorder(node):
             if not node:
                 return
-            
+
             inorder(node.left)
             array.append(node.val)
             inorder(node.right)
-            
+
         inorder(root)
-        
+
         return(array[k-1])
 
 #########################################################################################################################
@@ -2925,7 +2925,7 @@ Trie() Initializes the trie object.
 void insert(String word) Inserts the string word into the trie.
 boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
 boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
- 
+
 
 Example 1:
 
@@ -2947,16 +2947,16 @@ trie.search("app");     // return True
 class Trie:
 
     def __init__(self):
-        
+
 
     def insert(self, word: str) -> None:
-        
+
 
     def search(self, word: str) -> bool:
-        
+
 
     def startsWith(self, prefix: str) -> bool:
-        
+
 
 
 # Your Trie object will be instantiated and called as such:
@@ -2964,3 +2964,74 @@ class Trie:
 # obj.insert(word)
 # param_2 = obj.search(word)
 # param_3 = obj.startsWith(prefix)
+
+133. Clone Graph
+Medium
+
+4109
+
+2004
+
+Add to List
+
+Share
+Given a reference of a node in a connected undirected graph.
+
+Return a deep copy (clone) of the graph.
+
+Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
+
+class Node {
+    public int val;
+    public List<Node> neighbors;
+}
+
+
+Test case format:
+
+For simplicity, each node's value is the same as the node's index (1-indexed). For example, the first node with val == 1, the second node with val == 2, and so on. The graph is represented in the test case using an adjacency list.
+
+An adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a node in the graph.
+
+The given node will always be the first node with val = 1. You must return the copy of the given node as a reference to the cloned graph.
+
+
+
+Example 1:
+
+
+Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
+Output: [[2,4],[1,3],[2,4],[1,3]]
+Explanation: There are 4 nodes in the graph.
+1st node (val = 1)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
+2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
+3rd node (val = 3)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
+4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
+Example 2:
+
+
+Input: adjList = [[]]
+Output: [[]]
+Explanation: Note that the input contains one empty list. The graph consists of only one node with val = 1 and it does not have any neighbors.
+Example 3:
+
+Input: adjList = []
+Output: []
+Explanation: This an empty graph, it does not have any nodes.
+Example 4:
+
+
+Input: adjList = [[2],[1]]
+Output: [[2],[1]]
+
+""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+
