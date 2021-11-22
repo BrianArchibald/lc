@@ -3075,3 +3075,27 @@ Output: false
 Explanation: There are a total of 2 courses to take.
 To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
 
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        adjList = collections.defaultdict(list)
+
+        for course, pre in prerequisites:
+            adjList[pre].append(course)
+
+        def cycle():
+            tracker[node] = True
+            for n in adjList[node]:
+                if n in tracker or cycle(n, tracker):
+                    return True
+
+            tracker.pop(node)
+            return False
+
+        for n in range(numCourses):
+            tracker = {}
+            if cycle(n,tracker):
+                return false
+
+        return True
+
+
