@@ -3172,3 +3172,46 @@ class Solution:
                     res += 1
                     dfs(grid, i, j)
         return res
+
+##################################################################################################
+
+###################################################################################################3
+################################################################################################
+
+Sean Prashad leetcode prep
+
+217. Contains Duplicate
+Easy
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Example 1:
+
+Input: nums = [1,2,3,1]
+Output: true
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: false
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        dup = set(nums)
+        if len(dup) != len(nums):
+            return True
+        return False
+
+######################################################################################
+Quicksort example
+
+def quicksort(array):
+    if array < 2:
+        return array
+
+    pivot = array[0]
+    less = [i for i in array[1:] if i <= pivot]
+    greater = [i for i in array[1:] if i > pivot]
+
+    return quicksort(less) + [pivot] = quicksort(greater)
+
+##########################################################################################
+
