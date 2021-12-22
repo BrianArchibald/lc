@@ -3226,3 +3226,48 @@ def quicksort(array):
 
 ##########################################################################################
 
+448. Find All Numbers Disappeared in an Array
+Easy
+
+Given an array nums of n integers where nums[i] is in the range [1, n],
+return an array of all the integers in the range [1, n] that do not appear in nums.
+
+Example 1:
+Input: nums = [4,3,2,7,8,2,3,1]
+Output: [5,6]
+
+Example 2:
+Input: nums = [1,1]
+Output: [2]
+
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+    	N = set(nums)
+    	return [i for i in range(1, len(n) + 1) if i not in N]
+
+# class Solution:
+#     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+#         result = [i for i in range(0, len(nums)+1)] # build an array (0, 1, 2, 3, ..., n)
+#         for i in nums: result[i] = 0 # we index this array, setting "found" elements to zero
+#         return [i for i in result if i != 0] # we return results that aren't zero
+
+######################################################################################################
+
+2022. Convert 1D Array Into 2D Array
+Easy
+
+You are given a 0-indexed 1-dimensional (1D) integer array original, and two integers, m and n. You are tasked with creating a 2-dimensional (2D) array with m rows and n columns using all the elements from original.
+The elements from indices 0 to n - 1 (inclusive) of original should form the first row of the constructed 2D array, the elements from indices n to 2 * n - 1 (inclusive) should form the second row of the constructed 2D array, and so on.
+Return an m x n 2D array constructed according to the above procedure, or an empty 2D array if it is impossible.
+
+Example 1:
+
+Input: original = [1,2,3,4], m = 2, n = 2
+Output: [[1,2],[3,4]]
+Explanation:
+The constructed 2D array should contain 2 rows and 2 columns.
+The first group of n=2 elements in original, [1,2], becomes the first row in the constructed 2D array.
+The second group of n=2 elements in original, [3,4], becomes the second row in the constructed 2D array.
+
+
+
