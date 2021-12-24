@@ -3243,7 +3243,7 @@ Output: [2]
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
     	N = set(nums)
-    	return [i for i in range(1, len(n) + 1) if i not in N]
+    	return [i for i in range(1, len(nums) + 1) if i not in N]
 
 # class Solution:
 #     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
@@ -3269,5 +3269,42 @@ The constructed 2D array should contain 2 rows and 2 columns.
 The first group of n=2 elements in original, [1,2], becomes the first row in the constructed 2D array.
 The second group of n=2 elements in original, [3,4], becomes the second row in the constructed 2D array.
 
+class Solution:
+    def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
+        if m*n != len(original):
+            return []
 
+        q = []
+
+        for i in range(0, len(original), n):
+            q.append(original[i:i+n])
+
+        return q
+
+
+####################################################################################################
+268. Missing Number
+Easy
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+
+Example 1:
+
+Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+Example 2:
+
+Input: nums = [0,1]
+Output: 2
+Explanation: n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number in the range since it does not appear in nums.
+Example 3:
+
+Input: nums = [9,6,4,2,3,5,7,0,1]
+Output: 8
+Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        return sum(range(len(nums)+1)) - sum(nums)
 
